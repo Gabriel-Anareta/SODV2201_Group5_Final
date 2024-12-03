@@ -17,11 +17,7 @@ const getUsers = () => {
 const fileAuth = (username, password) => {
   const users = getUsers();
   const user = users.find(user => user.username === username);
-  // if (user && bcrypt.compareSync(password, user.password)) {
-  //   return user;
-  // }
-
-  if (user) {
+  if (user && bcrypt.compareSync(password, user.password)) {
     return user;
   }
   
@@ -35,6 +31,7 @@ const generateJWT = (username) => {
 
 const verifyJWT = (token) => {
   try {
+    console.log(jwt.verify(token, SECRET_KEY))
     return jwt.verify(token, SECRET_KEY);
   } catch (error) {
     return null;

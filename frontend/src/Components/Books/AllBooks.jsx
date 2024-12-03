@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { BookDisplay } from "./BookDisplay"
-import { useNavigate } from "react-router-dom"
+import { useParams, Link, useNavigate } from "react-router-dom"
 
-export const Home = () => {
+export const AllBooks = () => {
     const [books, setBooks] = useState([])
+    const { id } = useParams()
     const navigate = useNavigate()
 
     const GetBooks = async () => {
@@ -14,7 +14,7 @@ export const Home = () => {
             }
         })
         .then(res => res.json())
-        .then(data => setBooks(data.slice(0, 5)))
+        .then(data => setBooks(data))
         .catch(error => navigate(`/Error/${error}`))
     }
 
@@ -24,11 +24,17 @@ export const Home = () => {
 
     return (
         <div>
-            <h1>Welcome!</h1>
+            <h1>All Books</h1>
             <section>
                 {books.map(book => {
                     return(
-                        <BookDisplay key={book.id} data={book} />
+                        <>
+                            <img src={book.coverImage} alt={book.title}></img>
+                            <h2>{book.title}</h2>
+                            <p>{book.author}</p>
+                            <p>{book.description}</p>
+                            <Link to="/Books">To all books</Link>
+                        </>
                     )
                 })}
             </section>
