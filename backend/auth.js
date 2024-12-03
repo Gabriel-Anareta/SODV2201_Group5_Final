@@ -20,10 +20,6 @@ const fileAuth = (username, password) => {
   if (user && bcrypt.compareSync(password, user.password)) {
     return user;
   }
-
-  // if (user) {
-  //   return user;
-  // }
   
   return null;
 };
@@ -35,6 +31,7 @@ const generateJWT = (username) => {
 
 const verifyJWT = (token) => {
   try {
+    console.log(jwt.verify(token, SECRET_KEY))
     return jwt.verify(token, SECRET_KEY);
   } catch (error) {
     return null;
