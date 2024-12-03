@@ -33,7 +33,7 @@ export const AllBooks = () => {
                             <h2>{book.title}</h2>
                             <p>{book.author}</p>
                             <p>{book.description}</p>
-                            <Link to="/Books">To all books</Link>
+                            <Link to={`/Books/${book.id}`}>See more about this book</Link>
                         </>
                     )
                 })}
