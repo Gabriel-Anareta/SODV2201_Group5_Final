@@ -9,6 +9,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Navigate to='/Home'/>}></Route>
         <Route path='/Login' element={<LoginPage />}></Route>
+        <Route path='/Signup' element={<SignupPage />}></Route>
         <Route path='/Home' element={<Home />}></Route>
         {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>

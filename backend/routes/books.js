@@ -34,7 +34,7 @@ router.post('/',  (req, res) => {
   
   books.push(newBook);
 
-  fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
+  fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 4));
   res.status(201).json(newBook);
 })
 

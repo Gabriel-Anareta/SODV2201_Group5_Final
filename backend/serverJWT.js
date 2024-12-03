@@ -1,7 +1,11 @@
 const express = require('express');
+const fs = require('fs');
+const path = require('path');
 const bodyParser = require('body-parser');
-const { fileAuth, generateJWT } = require('./auth');
+const { fileAuth, generateJWT, getUsers } = require('./auth');
 const booksRouter = require('./routes/booksJWT');
+
+const usersFilePath = path.join(__dirname, 'data', 'users.json');
 
 const app = express();
 app.use(bodyParser.json());
@@ -11,6 +15,23 @@ app.use((req, res, next) => {
     res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, DELETE");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
     next();
+})
+
+app.post('/signup', (req, res) => {
+    const { username, password } = req.body
+    const user = fileAuth(username, password);
+    console.log(user)
+    if (user) {
+        return res.status(401).json({ message: 'username already exists' });
+    }
+
+    const usersData = fs.readFileSync(usersFilePath);
+    const users = JSON.parse(usersData);
+    users.push({ username, password })
+    fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4))
+
+    const token = generateJWT(username);
+    res.json({ token });
 })
 
 app.post('/login', (req, res) => {

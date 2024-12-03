@@ -17,13 +17,13 @@ const getUsers = () => {
 const fileAuth = (username, password) => {
   const users = getUsers();
   const user = users.find(user => user.username === username);
-  // if (user && bcrypt.compareSync(password, user.password)) {
-  //   return user;
-  // }
-
-  if (user) {
+  if (user && bcrypt.compareSync(password, user.password)) {
     return user;
   }
+
+  // if (user) {
+  //   return user;
+  // }
   
   return null;
 };

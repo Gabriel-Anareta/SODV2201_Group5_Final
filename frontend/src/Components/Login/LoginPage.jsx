@@ -15,6 +15,9 @@ export const LoginPage = () => {
     const HandleSubmit = async (e) => {
         e.preventDefault()
 
+        if (!(user.username && user.password))
+            return;
+
         fetch('/login', {
             method: 'POST',
             headers: {
@@ -32,13 +35,20 @@ export const LoginPage = () => {
         })
     }
 
+    const SignUp = () => {
+        navigate('/Signup')
+    }
+
     return (
-        <form onSubmit={HandleSubmit}>
-            <label htmlFor="username">Username</label>
-            <input type="text" name="username" onChange={HandleChange}/>
-            <label htmlFor="password">Password</label>
-            <input type="text" name="password" onChange={HandleChange}/>
-            <button type="submit">Submit</button>
-        </form>
+        <div>
+            <form onSubmit={HandleSubmit}>
+                <label htmlFor="username">Username</label>
+                <input type="text" name="username" onChange={HandleChange}/>
+                <label htmlFor="password">Password</label>
+                <input type="text" name="password" onChange={HandleChange}/>
+                <button type="submit">Login</button>
+            </form>
+            <button onClick={SignUp}>Sign up</button>
+        </div>
     )
 }
