@@ -15,13 +15,13 @@ export const LoginPage = () => {
     const HandleSubmit = async (e) => {
         e.preventDefault()
 
-        if (!(user.username && user.password))
+        if (!(login.username && login.password))
             return;
 
         fetch('/login', {
             method: 'POST',
             headers: {
-                "Content-Type": "Application/JSON",
+                "Content-Type": "Application/JSON"
             },
             body: JSON.stringify(login)
         })
@@ -30,9 +30,7 @@ export const LoginPage = () => {
             localStorage.setItem('accessToken', token)
             navigate('/Home')
         })
-        .catch(error => {
-            console.log(error)
-        })
+        .catch(error => navigate(`/Error/${error}`))
     }
 
     const SignUp = () => {

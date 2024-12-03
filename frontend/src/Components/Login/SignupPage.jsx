@@ -21,7 +21,7 @@ export const SignupPage = () => {
         fetch('/signup', {
             method: 'POST',
             headers: {
-                "Content-Type": "Application/JSON",
+                "Content-Type": "Application/JSON"
             },
             body: JSON.stringify(user)
         })
@@ -30,9 +30,7 @@ export const SignupPage = () => {
             localStorage.setItem('accessToken', token)
             navigate('/Home')
         })
-        .catch(error => {
-            console.log(error)
-        })
+        .catch(error => navigate(`/Error/${error}`))
     }
 
     return (
