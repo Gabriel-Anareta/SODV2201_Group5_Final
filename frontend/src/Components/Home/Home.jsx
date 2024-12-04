@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { BookDisplay } from "./BookDisplay"
 import { useNavigate } from "react-router-dom"
-import { useAllBooks } from "../../CustomHooks/BookHooks"
+import { useAllBooks } from "../../ServerHooks/BookHooks"
 
 export const Home = () => {
     const books = useAllBooks()

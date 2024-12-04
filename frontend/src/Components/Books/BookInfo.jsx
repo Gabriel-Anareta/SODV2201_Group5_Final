@@ -1,5 +1,5 @@
 import { useParams, Link, useNavigate } from "react-router-dom"
-import { useGetBook } from "../../CustomHooks/BookHooks"
+import { useGetBook } from "../../ServerHooks/BookHooks"
 import "./BookInfo.css";
 
 export const BookInfo = () => {

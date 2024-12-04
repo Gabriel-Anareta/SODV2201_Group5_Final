@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useUserInfo } from "../../CustomHooks/UserHooks"
+import { useUserInfo } from "../../ServerHooks/UserHooks"
 
 export const LoginPage = () => {
     const [login, setLogin, submitLogin] = useUserInfo('login')
