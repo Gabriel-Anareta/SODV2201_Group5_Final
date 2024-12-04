@@ -1,9 +1,9 @@
 import { useParams, Link, useNavigate } from "react-router-dom"
-import { useBookFromID } from "../../CustomHooks/BookHooks"
+import { useGetBook } from "../../CustomHooks/BookHooks"
 
 export const BookInfo = () => {
     const { id } = useParams()
-    const book = useBookFromID(id)
+    const book = useGetBook(id)
     const navigate = useNavigate();
 
     return (
