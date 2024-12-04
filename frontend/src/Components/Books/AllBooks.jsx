@@ -1,32 +1,15 @@
 import { useEffect, useState } from "react"
 import { useParams, Link, useNavigate } from "react-router-dom"
+import { useAllBooks } from "../../CustomHooks/BookHooks"
 
 export const AllBooks = () => {
-    const [books, setBooks] = useState([])
-    const { id } = useParams()
-    const navigate = useNavigate()
-
-    const GetBooks = async () => {
-        fetch('/books', {
-            method: 'GET',
-            headers: {
-                "Content-Type": "Application/JSON"
-            }
-        })
-        .then(res => res.json())
-        .then(data => setBooks(data))
-        .catch(error => navigate(`/Error/${error}`))
-    }
-
-    useEffect(() => {
-        GetBooks()
-    }, [])
+    const allBooks = useAllBooks()
 
     return (
         <div>
             <h1>All Books</h1>
             <section>
-                {books.map(book => {
+                {allBooks.map(book => {
                     return(
                         <>
                             <img src={book.coverImage} alt={book.title}></img>
