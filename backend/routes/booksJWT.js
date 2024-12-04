@@ -36,7 +36,7 @@ router.post('/', authMiddleware, (req, res) => {
   books.push(newBook);
 
 
-  fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
+  fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 4));
   res.status(201).json(newBook);
 })
 
@@ -52,7 +52,7 @@ router.put('/:id', authMiddleware, (req, res) => {
 
   books[bookIndex] = { ...books[bookIndex], ...updatedBook };
 
-  fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
+  fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 4));
   res.json(books[bookIndex]);
 })
 
@@ -63,7 +63,7 @@ router.delete('/:id', authMiddleware, (req, res) => {
 
   books = books.filter(book => book.id !== parseInt(id));
 
-  fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 2));
+  fs.writeFileSync(booksFilePath, JSON.stringify(books, null, 4));
   res.status(204).send();
 })
 
