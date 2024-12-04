@@ -1,8 +1,9 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useUserInfo } from "../../CustomHooks/UserHooks"
 
 export const LoginPage = () => {
-    const [login, setLogin] = useState({})
+    const [login, setLogin, submitLogin] = useUserInfo('login')
     const navigate = useNavigate()
 
     const HandleChange = (e) => {
@@ -12,25 +13,12 @@ export const LoginPage = () => {
         })
     }
 
-    const HandleSubmit = async (e) => {
+    const HandleSubmit = (e) => {
         e.preventDefault()
-
         if (!(login.username && login.password))
             return;
 
-        fetch('/login', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "Application/JSON"
-            },
-            body: JSON.stringify(login)
-        })
-        .then(res => res.json())
-        .then(token => {
-            localStorage.setItem('accessToken', token)
-            navigate('/Home')
-        })
-        .catch(error => navigate(`/Error/${error}`))
+        submitLogin()
     }
 
     const SignUp = () => {

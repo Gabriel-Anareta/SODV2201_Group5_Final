@@ -1,26 +1,10 @@
-import { useEffect, useState } from "react"
 import { useParams, Link, useNavigate } from "react-router-dom"
+import { useBookFromID } from "../../CustomHooks/BookHooks"
 
 export const BookInfo = () => {
-    const [book, setBook] = useState({})
     const { id } = useParams()
+    const book = useBookFromID(id)
     const navigate = useNavigate();
-
-    const GetBook = async () => {
-        fetch(`/books/${id}`, {
-            method: 'GET',
-            headers: {
-                "Content-Type": "Application/JSON"
-            }
-        })
-        .then(res => res.json())
-        .then(data => setBook(data))
-        .catch(error => navigate(`/Error/${error}`))
-    }
-
-    useEffect(() => {
-        GetBook()
-    }, [])
 
     return (
         <div>

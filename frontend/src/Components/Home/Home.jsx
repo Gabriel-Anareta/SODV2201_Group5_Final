@@ -1,26 +1,11 @@
 import { useEffect, useState } from "react"
 import { BookDisplay } from "./BookDisplay"
 import { useNavigate } from "react-router-dom"
+import { useAllBooks } from "../../CustomHooks/BookHooks"
 
 export const Home = () => {
-    const [books, setBooks] = useState([])
+    const books = useAllBooks()
     const navigate = useNavigate()
-
-    const GetBooks = async () => {
-        fetch('/books', {
-            method: 'GET',
-            headers: {
-                "Content-Type": "Application/JSON"
-            }
-        })
-        .then(res => res.json())
-        .then(data => setBooks(data.slice(0, 5)))
-        .catch(error => navigate(`/Error/${error}`))
-    }
-
-    useEffect(() => {
-        GetBooks()
-    }, [])
 
     return (
         <div>
