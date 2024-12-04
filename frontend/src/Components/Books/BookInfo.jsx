@@ -1,5 +1,6 @@
 import { useParams, Link, useNavigate } from "react-router-dom"
 import { useGetBook } from "../../CustomHooks/BookHooks"
+import "./BookInfo.css";
 
 export const BookInfo = () => {
     const { id } = useParams()
@@ -7,13 +8,16 @@ export const BookInfo = () => {
     const navigate = useNavigate();
 
     return (
-        <div>
+        <div className="container">
             <img src={book.coverImage} alt={book.title}></img>
             <h2>{book.title}</h2>
-            <p>{book.author}</p>
-            <p>{book.description}</p>
-            <p>{book.publicationDate}</p>
-            <Link to="/Books">To all books</Link>
+            <p>Author: {book.author}</p>
+            <p className="description">{book.description}</p>
+            <p>Date Published: {book.publicationDate}</p>
+            <Link to="/Books"><button>To all books</button></Link>
+            <main>
+                <footer>Copyright &copy;</footer>
+            </main>
         </div>
     )
 }
