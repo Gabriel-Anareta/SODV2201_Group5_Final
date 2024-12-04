@@ -6,7 +6,7 @@ export const SignupPage = () => {
     const [signup, setSignup, submitSignup] = useUserInfo('signup')
     const navigate = useNavigate()
 
-    const HandleChange = (e) => {
+    const HandleChange = (e) => { 
         setSignup({
             ...signup,
             [e.target.name]: e.target.value
@@ -15,7 +15,7 @@ export const SignupPage = () => {
 
     const HandleSubmit = async (e) => {
         e.preventDefault()
-        if (!(signup.Signupname && signup.password))
+        if (!(signup.username && signup.password))
             return;
 
         submitSignup()
