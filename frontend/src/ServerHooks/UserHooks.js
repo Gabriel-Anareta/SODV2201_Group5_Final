@@ -13,46 +13,50 @@ const useUserInfo = (callType) => {
     })
     const navigate = useNavigate()
 
+    const GetData = async (res) => {
+        const data = await res.json()
+        if (!res.ok){
+            throw new Error(`${data.message}`)
+            return null
+        }
+        return data
+    }
+
     const submitUser = async () => {
-        try {
-            const res = await fetch(`/${callType}`, {
-                method: 'POST',
-                headers: { "Content-Type": "Application/JSON" },
-                body: JSON.stringify(user)
-            })
-            if (!res.ok){
-                const data = await res.json()
-                throw new Error(`${data.message}`)
-            }
-            const data = await res.json()
+        fetch(`/${callType}`, {
+            method: 'POST',
+            headers: { "Content-Type": "Application/JSON" },
+            body: JSON.stringify(user)
+        })
+        .then(res => GetData(res))
+        .then(data => {
             localStorage.setItem('accessToken', data.token)
             localStorage.setItem('username', data.username)
             navigate('/Home')
-        }
-        catch (error) {
-            navigate(`/Error/${error}`)
-        }
+        })
+        .catch(error => navigate(`/Error/${error}`))
     }
 
     return [user, setUser, submitUser]
 }
 
+const GetToken = (onError = () => {}) => {
+    const token = localStorage.getItem('accessToken')
+    if (!token) {
+        onError()
+        return null
+    }
+    return token
+}
+
 const useTokenVerification = () => {
     const navigate = useNavigate()
 
-    const GetToken = () => {
-        const token = localStorage.getItem('accessToken')
-        if (!token) {
+    const verifyToken = async () => {
+        const token = GetToken(() => {
             const msg = "401 - Unauthorized"
             navigate(`/Error/${msg}`)
-            return null
-        }
-
-        return token
-    }
-
-    const verifyToken = async () => {
-        const token = GetToken()
+        })
 
         return fetch('/verifyJWT', {
             method: 'POST',
@@ -74,4 +78,4 @@ const useTokenVerification = () => {
     return verifyToken
 }
 
-export { useUserInfo, useTokenVerification}
+export { useUserInfo, useTokenVerification, GetToken}

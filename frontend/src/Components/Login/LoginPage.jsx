@@ -1,10 +1,18 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useUserInfo } from "../../ServerHooks/UserHooks"
+import { GetToken, useUserInfo } from "../../ServerHooks/UserHooks"
 
 export const LoginPage = () => {
     const [login, setLogin, submitLogin] = useUserInfo('login')
     const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = GetToken()
+        if (!token)
+            return
+        
+        navigate('/Home')
+    })
 
     const HandleChange = (e) => {
         setLogin({
