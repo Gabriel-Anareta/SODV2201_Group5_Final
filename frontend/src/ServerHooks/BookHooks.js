@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
+import { useTokenVerification } from "./UserHooks"
 
 const BaseRoute = '/books'
 
@@ -61,14 +62,10 @@ const useCreateBook = () => {
         coverImage: "",
     })
     const navigate = useNavigate();
+    const verifyToken = useTokenVerification()
 
     const submitBook = async () => {
-        const token = localStorage.getItem('accessToken')
-        if (!token) {
-            const msg = "401 - unauthorized"
-            navigate(`/Error/${msg}`)
-            return
-        }
+        const token = verifyToken()
 
         fetch(BaseRoute, {
             method: 'POST',
@@ -95,14 +92,10 @@ const useUpdateBook = (id) => {
         coverImage: "",
     })
     const navigate = useNavigate();
+    const verifyToken = useTokenVerification()
 
     const submitBook = async () => {
-        const token = localStorage.getItem('accessToken')
-        if (!token) {
-            const msg = "401 - unauthorized"
-            navigate(`/Error/${msg}`)
-            return
-        }
+        const token = verifyToken()
 
         fetch(`${BaseRoute}/${id}`, {
             method: 'PUT',
@@ -122,14 +115,10 @@ const useUpdateBook = (id) => {
 
 const useDeleteBook = () => {
     const navigate = useNavigate();
+    const verifyToken = useTokenVerification()
 
     const submitID = async (id) => {
-        const token = localStorage.getItem('accessToken')
-        if (!token) {
-            const msg = "401 - unauthorized"
-            navigate(`/Error/${msg}`)
-            return
-        }
+        const token = verifyToken()
 
         fetch(`${BaseRoute}/${id}`, {
             method: 'DELETE',

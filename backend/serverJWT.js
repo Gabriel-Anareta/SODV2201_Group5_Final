@@ -2,7 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
-const { fileAuth, generateJWT, getUsers } = require('./auth');
+const bcrypt = require('bcryptjs')
+const { fileAuth, generateJWT, getUsers, verifyJWT } = require('./auth');
 const booksRouter = require('./routes/booksJWT');
 
 const usersFilePath = path.join(__dirname, 'data', 'users.json');
@@ -20,18 +21,27 @@ app.use((req, res, next) => {
 app.post('/signup', (req, res) => {
     const { username, password } = req.body
     const user = fileAuth(username, password);
-    console.log(user)
     if (user) {
         return res.status(401).json({ message: 'username already exists' });
     }
 
+    const saltRounds = 10;
+    const hash = bcrypt.hashSync(password, saltRounds)
+
     const usersData = fs.readFileSync(usersFilePath);
     const users = JSON.parse(usersData);
-    users.push({ username, password })
+    users.push({ 
+        username: username, 
+        password: hash 
+    })
+
     fs.writeFileSync(usersFilePath, JSON.stringify(users, null, 4))
 
     const token = generateJWT(username);
-    res.json({ token });
+    res.json({ 
+        token: token, 
+        username: username
+    });
 })
 
 app.post('/login', (req, res) => {
@@ -44,9 +54,23 @@ app.post('/login', (req, res) => {
     }
     // JWT Auth
     const token = generateJWT(username);
-    res.json({ token });
+    res.json({ 
+        token: token, 
+        username: username
+    });
     
 });
+
+app.post('/verifyJWT', (req, res) => {
+    const { token } = req.body
+    console.log(token)
+    const decoded = verifyJWT(token)
+    if (!decoded) {
+        return res.status(401).json({ message: 'Invalid user' });
+    }
+
+    res.json({ message: 'Valid user'})
+})
 
 app.use('/books', booksRouter);
 
