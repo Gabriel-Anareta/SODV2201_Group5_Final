@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 const bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs')
-const { fileAuth, generateJWT, getUsers } = require('./auth');
+const { fileAuth, generateJWT, getUsers, verifyJWT } = require('./auth');
 const booksRouter = require('./routes/booksJWT');
 
 const usersFilePath = path.join(__dirname, 'data', 'users.json');
@@ -60,6 +60,17 @@ app.post('/login', (req, res) => {
     });
     
 });
+
+app.post('/verifyJWT', (req, res) => {
+    const { token } = req.body
+    console.log(token)
+    const decoded = verifyJWT(token)
+    if (!decoded) {
+        return res.status(401).json({ message: 'Invalid user' });
+    }
+
+    res.json({ message: 'Valid user'})
+})
 
 app.use('/books', booksRouter);
 
