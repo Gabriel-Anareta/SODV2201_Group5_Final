@@ -1,111 +1,124 @@
 import React, { useState } from "react";
-import axios from "axios";
 
 const AddBook = () => {
-    const [formData, setFormData] = useState({
-        title: "",
-        author: "",
-        description: "",
-        publicationDate: "",
-        coverImage: null,
-    });
+  // State for form data
+  const [title, setTitle] = useState("");
+  const [author, setAuthor] = useState("");
+  const [description, setDescription] = useState("");
+  const [publicationDate, setPublicationDate] = useState("");
+  const [coverImage, setCoverImage] = useState(null);
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-    const handleFileChange = (e) => {
-        setFormData({ ...formData, coverImage: e.target.files[0] });
-    };
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("author", author);
+    formData.append("description", description);
+    formData.append("publicationDate", publicationDate);
+    if (coverImage) {
+      formData.append("coverImage", coverImage);
+    }
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    try {
+      const response = await fetch("http://localhost:5000/api/books", {
+        method: "POST",
+        body: formData,
+      });
 
-        const data = new FormData();
-        data.append("title", formData.title);
-        data.append("author", formData.author);
-        data.append("description", formData.description);
-        data.append("publicationDate", formData.publicationDate);
-        if (formData.coverImage) {
-            data.append("coverImage", formData.coverImage);
-        }
+      if (response.ok) {
+        const data = await response.json();
+        alert("Book added successfully!");
+        console.log(data);
+        resetForm();
+      } else {
+        const errorData = await response.json();
+        console.error("Error:", errorData);
+        alert("Failed to add the book. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error adding the book:", error);
+      alert("An error occurred while adding the book.");
+    }
+  };
 
-        try {
-            const response = await axios.post("http://localhost:3000/api/books", data, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-            alert("Book added successfully!");
-            console.log(response.data);
-        } catch (error) {
-            console.error("Error adding the book:", error);
-            alert("Failed to add the book.");
-        }
-    };
+  const resetForm = () => {
+    setTitle("");
+    setAuthor("");
+    setDescription("");
+    setPublicationDate("");
+    setCoverImage(null);
+  };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <h2>Add New Book</h2>
-            <label>
-                Title:
-                <input
-                    type="text"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <br />
-            <label>
-                Author:
-                <input
-                    type="text"
-                    name="author"
-                    value={formData.author}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <br />
-            <label>
-                Description:
-                <textarea
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <br />
-            <label>
-                Publication Date:
-                <input
-                    type="date"
-                    name="publicationDate"
-                    value={formData.publicationDate}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <br />
-            <label>
-                Cover Image:
-                <input type="file" name="coverImage" onChange={handleFileChange} />
-            </label>
-            <br />
-            <button type="submit">Add Book</button>
-            <button type="button" onClick={() => setFormData({
-                title: "",
-                author: "",
-                description: "",
-                publicationDate: "",
-                coverImage: null,
-            })}>Cancel</button>
-        </form>
-    );
+  return (
+    <div style={{ padding: "20px" }}>
+      <h2>Add New Book</h2>
+      <form
+        onSubmit={handleSubmit}
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          maxWidth: "400px",
+        }}
+      >
+        <label>
+          Title:
+          <input
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+            placeholder="Enter book title"
+          />
+        </label>
+        <label>
+          Author:
+          <input
+            type="text"
+            value={author}
+            onChange={(e) => setAuthor(e.target.value)}
+            required
+            placeholder="Enter author name"
+          />
+        </label>
+        <label>
+          Description:
+          <textarea
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+            placeholder="Enter book description"
+          />
+        </label>
+        <label>
+          Publication Date:
+          <input
+            type="date"
+            value={publicationDate}
+            onChange={(e) => setPublicationDate(e.target.value)}
+            required
+          />
+        </label>
+        <label>
+          Cover Image:
+          <input
+            type="file"
+            onChange={(e) => setCoverImage(e.target.files[0])}
+          />
+        </label>
+        <button type="submit" style={{ marginTop: "10px" }}>
+          Add Book
+        </button>
+        <button
+          type="button"
+          onClick={resetForm}
+          style={{ marginTop: "10px" }}
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default AddBook;
