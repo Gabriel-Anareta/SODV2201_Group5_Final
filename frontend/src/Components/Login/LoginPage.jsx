@@ -12,11 +12,13 @@ export const LoginPage = () => {
         if (!token)
             return
 
-        const verified = verifyToken()
-        if (verified)
-            navigate('/Home')
-        else
+        var valid = true
+        const verified = verifyToken(error => {
             localStorage.clear()
+            valid = false
+        })
+        if (verified && valid)
+            navigate('/Home')
     }, [])
 
     const HandleChange = (e) => {
