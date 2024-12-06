@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom"
+import styles from './Home.module.css'
 
 export const NavBar = () => {
 const navigate = useNavigate()
 
     return (
-        <div>
+        <div className={styles.NavContainer}>
             <button onClick={() => navigate('/Books')}>All Books</button>
             <button onClick={() => navigate('/Books/Search')}>Search</button>
             <button onClick={() => {

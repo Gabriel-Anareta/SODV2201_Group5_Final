@@ -1,0 +1,50 @@
+.Home > * {
+    margin: 0;
+    padding: 0;
+}
+
+.Nav {
+    width: 100%;
+    height: fit-content;
+
+    background-color: rgb(250, 250, 250);
+}
+
+.NavContainer {
+    height: fit-content;
+    padding: 25px;
+
+    background-color: rgb(1, 11, 25);
+
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.NavContainer > button {
+    font-size: 1rem;
+    color: rgb(250, 250, 250);
+    background-color: rgba(0, 0, 0, 0);
+    border-style: none;
+}
+
+.Title {
+    width: clamp(0px, 1000px, 100%);
+    height: 200px;
+
+    justify-self: center;
+
+    background-color: rgb(98, 119, 185);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: left;
+}
+
+.Title > h1 {
+    margin-left: 25px;
+    color: rgb(250, 250, 250);
+}

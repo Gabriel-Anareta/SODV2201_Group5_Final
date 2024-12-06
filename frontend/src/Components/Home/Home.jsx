@@ -4,24 +4,31 @@ import { useNavigate } from "react-router-dom"
 import { useAllBooks } from "../../ServerHooks/BookHooks"
 import { NavBar } from "./NavBar"
 import { useTokenVerification } from "../../ServerHooks/UserHooks"
+import styles from "./Home.module.css"
 
 export const Home = () => {
     const books = useAllBooks()
     const navigate = useNavigate()
-    const submitToken = useTokenVerification()
+    const verifyToken = useTokenVerification()
     const username = localStorage.getItem('username')
 
     useEffect(() => {
-        submitToken()
+        verifyToken(error => {
+            navigate(`/Error/${error}`)
+        })
     }, [])
 
     return (
-        <>
+        <div className={styles.Home}>
             <header>
-                <NavBar />
+                <div className={styles.Nav}>
+                    <NavBar />
+                    <div className={styles.Title}>
+                        <h1>Welcome {username}!</h1>
+                    </div>
+                </div>
             </header>
             <main>
-                <h1>Welcome {username}!</h1>
                 <section>
                     {books.map(book => {
                         return(
@@ -30,6 +37,6 @@ export const Home = () => {
                     })}
                 </section>
             </main>
-        </>
+        </div>
     )
 }
