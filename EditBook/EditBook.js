@@ -1,139 +1,139 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useParams } from "react-router-dom";
 
-const EditBook = ({ bookId }) => {
-    const [formData, setFormData] = useState({
-        title: "",
-        author: "",
-        description: "",
-        publicationDate: "",
-        coverImage: null,
-    });
+const EditBook = () => {
+  const { id } = useParams(); // Retrieve the book ID from the URL
+  const [formData, setFormData] = useState({
+    title: "",
+    author: "",
+    description: "",
+    publicationDate: "",
+    coverImage: null,
+  });
 
-    useEffect(() => {
-        // Fetch the existing book details
-        const fetchBook = async () => {
-            try {
-                const response = await axios.get(`http://localhost:3000/api/books/${bookId}`);
-                const book = response.data;
-                setFormData({
-                    title: book.title,
-                    author: book.author,
-                    description: book.description,
-                    publicationDate: book.publicationDate,
-                    coverImage: null, // Cover image won't be fetched; only updated if provided
-                });
-            } catch (error) {
-                console.error("Error fetching book data:", error);
-            }
-        };
-
-        fetchBook();
-    }, [bookId]);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-
-    const handleFileChange = (e) => {
-        setFormData({ ...formData, coverImage: e.target.files[0] });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-
-        const data = new FormData();
-        data.append("title", formData.title);
-        data.append("author", formData.author);
-        data.append("description", formData.description);
-        data.append("publicationDate", formData.publicationDate);
-        if (formData.coverImage) {
-            data.append("coverImage", formData.coverImage);
+  // Fetch the existing book data on component mount
+  useEffect(() => {
+    const fetchBook = async () => {
+      try {
+        const response = await fetch(`http://localhost:5000/api/books/${id}`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch book details");
         }
-
-        try {
-            const response = await axios.put(`http://localhost:3000/api/books/${bookId}`, data, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            });
-            alert("Book updated successfully!");
-            console.log(response.data);
-        } catch (error) {
-            console.error("Error updating the book:", error);
-            alert("Failed to update the book.");
-        }
+        const data = await response.json();
+        setFormData({
+          title: data.title || "",
+          author: data.author || "",
+          description: data.description || "",
+          publicationDate: data.publicationDate || "",
+          coverImage: null, // Existing cover image won't be fetched
+        });
+      } catch (error) {
+        console.error("Error fetching book data:", error);
+        alert("Failed to fetch book data.");
+      }
     };
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <h2>Edit Book</h2>
-            <label>
-                Title:
-                <input
-                    type="text"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <br />
-            <label>
-                Author:
-                <input
-                    type="text"
-                    name="author"
-                    value={formData.author}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <br />
-            <label>
-                Description:
-                <textarea
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <br />
-            <label>
-                Publication Date:
-                <input
-                    type="date"
-                    name="publicationDate"
-                    value={formData.publicationDate}
-                    onChange={handleChange}
-                    required
-                />
-            </label>
-            <br />
-            <label>
-                Cover Image:
-                <input type="file" name="coverImage" onChange={handleFileChange} />
-            </label>
-            <br />
-            <button type="submit">Update Book</button>
-            <button
-                type="button"
-                onClick={() =>
-                    setFormData({
-                        title: "",
-                        author: "",
-                        description: "",
-                        publicationDate: "",
-                        coverImage: null,
-                    })
-                }
-            >
-                Cancel
-            </button>
-        </form>
-    );
+    fetchBook();
+  }, [id]);
+
+  // Handle changes in form fields
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle file upload
+  const handleFileChange = (e) => {
+    setFormData({ ...formData, coverImage: e.target.files[0] });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const updatedFormData = new FormData();
+    updatedFormData.append("title", formData.title);
+    updatedFormData.append("author", formData.author);
+    updatedFormData.append("description", formData.description);
+    updatedFormData.append("publicationDate", formData.publicationDate);
+    if (formData.coverImage) {
+      updatedFormData.append("coverImage", formData.coverImage);
+    }
+
+    try {
+      const response = await fetch(`http://localhost:5000/api/books/${id}`, {
+        method: "PUT",
+        body: updatedFormData,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update book");
+      }
+
+      const result = await response.json();
+      alert("Book updated successfully!");
+      console.log(result);
+    } catch (error) {
+      console.error("Error updating the book:", error);
+      alert("Failed to update the book.");
+    }
+  };
+
+  return (
+    <div style={{ padding: "20px" }}>
+      <h2>Edit Book</h2>
+      <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", maxWidth: "400px" }}>
+        <label>
+          Title:
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Author:
+          <input
+            type="text"
+            name="author"
+            value={formData.author}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Description:
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Publication Date:
+          <input
+            type="date"
+            name="publicationDate"
+            value={formData.publicationDate}
+            onChange={handleChange}
+            required
+          />
+        </label>
+        <label>
+          Cover Image:
+          <input
+            type="file"
+            name="coverImage"
+            onChange={handleFileChange}
+          />
+        </label>
+        <button type="submit" style={{ marginTop: "10px" }}>Update Book</button>
+      </form>
+    </div>
+  );
 };
 
 export default EditBook;
