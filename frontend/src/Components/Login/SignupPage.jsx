@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useUserInfo } from "../../ServerHooks/UserHooks"
+import styles from "./LogSign.module.css"
 
 export const SignupPage = () => {
     const [signup, setSignup, submitSignup] = useUserInfo('signup')
@@ -21,13 +22,30 @@ export const SignupPage = () => {
         submitSignup()
     }
 
+    const Login = () => {
+        navigate('/Login')
+    }
+
     return (
-        <form onSubmit={HandleSubmit}>
-            <label htmlFor="Signupname">Signupname</label>
-            <input type="text" name="Signupname" onChange={HandleChange}/>
-            <label htmlFor="password">Password</label>
-            <input type="text" name="password" onChange={HandleChange}/>
-            <button type="submit">Submit</button>
-        </form>
+        <div>
+            <main className={styles.UserFull}>
+                <section className={styles.UserBox}>
+                    <h1>Signup</h1>
+                    <form onSubmit={HandleSubmit} className={styles.UserForm}>
+                        <input type="text" name="username" onChange={HandleChange} placeholder="username"/>
+                        <input type="text" name="password" onChange={HandleChange} placeholder="password"/>
+                        <div className={styles.UserButtons}>
+                            <button onClick={Login} className={styles.Reroute}>Already have an account?</button>
+                            <button type="submit" className={styles.Submit}>Signup</button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+            <footer>
+                <p className={styles.Copyright}>Copyright &copy; {new Date().getFullYear()}</p>
+            </footer>
+        </div>
     )
+    
+    
 }

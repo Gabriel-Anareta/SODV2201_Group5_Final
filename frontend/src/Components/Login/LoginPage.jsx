@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { GetToken, useTokenVerification, useUserInfo } from "../../ServerHooks/UserHooks"
+import { FooterInfo } from "../Footer/FooterInfo"
+import styles from "./LogSign.module.css"
 
 export const LoginPage = () => {
     const [login, setLogin, submitLogin] = useUserInfo('login')
@@ -42,14 +44,22 @@ export const LoginPage = () => {
 
     return (
         <div>
-            <form onSubmit={HandleSubmit}>
-                <label htmlFor="username">Username</label>
-                <input type="text" name="username" onChange={HandleChange}/>
-                <label htmlFor="password">Password</label>
-                <input type="text" name="password" onChange={HandleChange}/>
-                <button type="submit">Login</button>
-            </form>
-            <button onClick={SignUp}>Sign up</button>
+            <main className={styles.UserFull}>
+                <section className={styles.UserBox}>
+                    <h1>Login</h1>
+                    <form onSubmit={HandleSubmit} className={styles.UserForm}>
+                        <input type="text" name="username" onChange={HandleChange} placeholder="username"/>
+                        <input type="text" name="password" onChange={HandleChange} placeholder="password"/>
+                        <div className={styles.UserButtons}>
+                            <button onClick={SignUp} className={styles.Reroute}>Don't have an account?</button>
+                            <button type="submit" className={styles.Submit}>Login</button>
+                        </div>
+                    </form>
+                </section>
+            </main>
+            <footer>
+                <p className={styles.Copyright}>Copyright &copy; {new Date().getFullYear()}</p>
+            </footer>
         </div>
     )
 }

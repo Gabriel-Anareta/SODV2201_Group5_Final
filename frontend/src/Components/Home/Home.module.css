@@ -39,7 +39,6 @@ header {
 
 .Nav {
     width: 100%;
-    /* height: fit-content; */
     padding: 0 25px;
 
     background-color: var(--rel-white-color);
@@ -187,7 +186,8 @@ header {
 
     border-style: solid;
     border-color: var(--primary-app-color);
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
     transition: all 0.2s ease-in;
 }
@@ -261,12 +261,14 @@ header {
 }
 
 .BookDisplay > * > button {
+    width: fit-content;
     padding: 10px;
 
     background-color: transparent;
 
     border-style: solid;
-    border-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     border-color: var(--rel-black-color);
 
     transition: all 0.2s ease-in;
