@@ -5,6 +5,7 @@ import { useAllBooks } from "../../ServerHooks/BookHooks"
 import { NavBar } from "./NavBar"
 import { useTokenVerification } from "../../ServerHooks/UserHooks"
 import styles from "./Home.module.css"
+import { FooterInfo } from "../Footer/FooterInfo"
 
 export const Home = () => {
     const books = useAllBooks()
@@ -14,7 +15,7 @@ export const Home = () => {
 
     useEffect(() => {
         verifyToken(error => {
-            navigate(`/Error/${error}`)
+            navigate(`/Login`)
         })
     }, [])
 
@@ -22,11 +23,11 @@ export const Home = () => {
         <div className={styles.Home}>
             <header>
                 <div className={styles.Nav}>
-                    <NavBar />
+                    <NavBar username={username}/>
                 </div>
                 <div className={styles.Title}>
                     <div className={styles.TitleDarkener}>
-                        <h1>Welcome {username}!</h1>
+                        <h1>Stories Made for Everyone</h1>
                     </div>
                 </div>
             </header>
@@ -50,13 +51,27 @@ export const Home = () => {
                     </div>
                 </section>
                 <section>
-                    {/* {books.map(book => {
-                        return(
-                            <BookDisplay key={book.id} data={book} />
-                        )
-                    })} */}
+                    <h2 className={styles.BooksTitle}>Check out some popular books</h2>
+                    <div className={styles.AllBooks}>
+                        {books
+                        .filter(book => book.id < 5)
+                        .map(book => {
+                            return(
+                                <BookDisplay key={book.id} data={book} />
+                            )
+                        })}
+                    </div>
+                </section>
+                <section>
+                    <div className={styles.BreakSection}>
+                        <p>Looking for a specific book?</p>
+                        <button onClick={() => navigate('/Books/Search')}>Check here to see if we have it!</button>
+                    </div>
                 </section>
             </main>
+            <footer>
+                <FooterInfo />
+            </footer>
         </div>
     )
 }

@@ -10,19 +10,22 @@ import { SearchBooks } from './Components/Books/Search/SearchBooks';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<Navigate to='/Home'/>}></Route>
-        <Route path='/Login' element={<LoginPage />}></Route>
-        <Route path='/Signup' element={<SignupPage />}></Route>
-        <Route path='/Home' element={<Home />}></Route>
-        <Route path='/Error/:message' element={<ErrorPage />}></Route>
-        <Route path='/Books' element={<AllBooks />}></Route>
-        <Route path='/Books/:id' element={<BookInfo />}></Route>
-        <Route path='/Books/Search' element={<SearchBooks />}></Route>
-        {/* <Route path="*" element={<Navigate to="/" />} /> */}
-      </Routes>
-    </BrowserRouter>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Navigate to='/Login'/>}></Route>
+          <Route path='/Login' element={<LoginPage />}></Route>
+          <Route path='/Signup' element={<SignupPage />}></Route>
+          <Route path='/Home' element={<Home />}></Route>
+          <Route path='/Error/:message' element={<ErrorPage />}></Route>
+          <Route path='/Books'>
+            <Route path='' element={<AllBooks />}></Route>
+            <Route path=':id' element={<BookInfo />}></Route>
+            <Route path='Search' element={<SearchBooks />}></Route>
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
