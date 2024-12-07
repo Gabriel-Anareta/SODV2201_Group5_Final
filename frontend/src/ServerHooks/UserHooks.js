@@ -17,7 +17,6 @@ const useUserInfo = (callType) => {
         const data = await res.json()
         if (!res.ok){
             throw new Error(`${data.message}`)
-            return null
         }
         return data
     }
@@ -40,23 +39,19 @@ const useUserInfo = (callType) => {
     return [user, setUser, submitUser]
 }
 
-const GetToken = (onError = () => {}) => {
+const GetToken = (onError = (error) => {}) => {
     const token = localStorage.getItem('accessToken')
     if (!token) {
-        onError()
+        onError(new Error('token does not exist'))
         return null
     }
     return token
 }
 
 const useTokenVerification = () => {
-    const navigate = useNavigate()
+    const verifyToken = async (onError = (error) => {}) => {
 
-    const verifyToken = async () => {
-        const token = GetToken(() => {
-            const msg = "401 - Unauthorized"
-            navigate(`/Error/${msg}`)
-        })
+        const token = GetToken(onError)
 
         return fetch('/verifyJWT', {
             method: 'POST',
@@ -70,7 +65,7 @@ const useTokenVerification = () => {
         })
         .then(data => data.token)
         .catch(error => {
-            navigate(`/Error/${error}`)
+            onError(error)
             return null
         })
     }

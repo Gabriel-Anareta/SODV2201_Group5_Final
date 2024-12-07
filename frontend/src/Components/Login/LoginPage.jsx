@@ -1,18 +1,25 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { GetToken, useUserInfo } from "../../ServerHooks/UserHooks"
+import { GetToken, useTokenVerification, useUserInfo } from "../../ServerHooks/UserHooks"
 
 export const LoginPage = () => {
     const [login, setLogin, submitLogin] = useUserInfo('login')
+    const verifyToken = useTokenVerification()
     const navigate = useNavigate()
 
     useEffect(() => {
         const token = GetToken()
         if (!token)
             return
-        
-        navigate('/Home')
-    })
+
+        var valid = true
+        const verified = verifyToken(error => {
+            localStorage.clear()
+            valid = false
+        })
+        if (verified && valid)
+            navigate('/Home')
+    }, [])
 
     const HandleChange = (e) => {
         setLogin({
