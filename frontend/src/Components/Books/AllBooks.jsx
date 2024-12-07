@@ -32,9 +32,6 @@ export const AllBooks = () => {
                     })}
                 </div>
             </main>
-            <footer>
-                <p>Copyright &copy;</p>
-            </footer>
         </div>
     )
 }
