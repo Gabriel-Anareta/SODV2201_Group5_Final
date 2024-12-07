@@ -15,9 +15,6 @@ export const BookInfo = () => {
             <p className="description">{book.description}</p>
             <p>Date Published: {book.publicationDate}</p>
             <Link to="/Books"><button>To all books</button></Link>
-            <main>
-                <footer>Copyright &copy;</footer>
-            </main>
         </div>
     )
 }

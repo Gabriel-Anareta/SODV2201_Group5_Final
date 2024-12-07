@@ -1,11 +1,13 @@
 import { useContext, useState } from "react"
 import { filterContext } from "./SearchHooks"
+import styles from "./Search.module.css"
 
 export const SimpleSearch = () => {
     const [category, setCategory] = useState('title')
     const { setSearch, dispatch } = useContext(filterContext)
 
     const HandleCategoryChange = (e) => {
+        dispatch({ type: 'resetFilters' })
         setCategory(e.target.value)
     }
 
@@ -22,15 +24,17 @@ export const SimpleSearch = () => {
     }
 
     return (
-        <>
-            <label htmlFor="filter">Search by: </label>
-            <select name="filter" id="filter" onChange={HandleCategoryChange}>
-                <option value="title">Title</option>
-                <option value="author">Author</option>
-                <option value="publicationatDate">Date</option>
-            </select>
-            <input type="text" name="search" onChange={HandleSearchChange}/>
-            <button onClick={HandleTypeChange}>Advanced search</button>
-        </>
+        <div className={styles.SearchBox}>
+            {/* <label htmlFor="filter">Search by: </label> */}
+            <div className={styles.InputBox}>
+                <select name="filter" id="filter" onChange={HandleCategoryChange}>
+                    <option value="title">Title</option>
+                    <option value="author">Author</option>
+                    <option value="publicationationDate">Date</option>
+                </select>
+                <input type="text" name="search" onChange={HandleSearchChange} placeholder={category}/>
+            </div>
+            <button onClick={HandleTypeChange}>Advanced search →</button>
+        </div>
     )
 }

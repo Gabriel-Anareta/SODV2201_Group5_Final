@@ -21,12 +21,13 @@ export const Home = () => {
 
     return (
         <div className={styles.Home}>
+            <div className={styles.Opener}></div>
             <header>
                 <div className={styles.Nav}>
                     <NavBar username={username}/>
                 </div>
-                <div className={styles.Title}>
-                    <div className={styles.TitleDarkener}>
+                <div className={styles.TitleOuter}>
+                    <div className={styles.TitleInner}>
                         <h1>Stories Made for Everyone</h1>
                     </div>
                 </div>
