@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useReducer, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useTokenVerification } from "./UserHooks"
 
@@ -53,14 +53,31 @@ const useGetBook = (id) => {
     return book;
 }
 
+const ModBookState = {
+    title: "",
+    author: "",
+    description: "",
+    publicationDate: "",
+    coverImage: "",
+}
+
+const ModBookReducer = (state, action) => {
+    switch (action.type) {
+        case "SetBook":
+            const { id, ...valueNoID } = action.value
+            return valueNoID
+        case "SetBookValue":
+            return {
+                ...state,
+                [action.field]: action.value
+            }
+        case "ResetBook":
+            return ModBookState
+    }
+}
+
 const useCreateBook = () => {
-    const [book, setBook] = useState({
-        title: "",
-        author: "",
-        description: "",
-        publicationDate: "",
-        coverImage: "",
-    })
+    const [book, dispatchBook] = useReducer(ModBookReducer, ModBookState)
     const navigate = useNavigate();
     const verifyToken = useTokenVerification()
 
@@ -80,17 +97,11 @@ const useCreateBook = () => {
         .catch(error => navigate(`/Error/${error}`))
     }
 
-    return [book, setBook, submitBook]
+    return [book, dispatchBook, submitBook]
 }
 
 const useUpdateBook = (id) => {
-    const [book, setBook] = useState({
-        title: "",
-        author: "",
-        description: "",
-        publicationDate: "",
-        coverImage: "",
-    })
+    const [book, dispatchBook] = useReducer(ModBookReducer, ModBookState)
     const navigate = useNavigate();
     const verifyToken = useTokenVerification()
 
@@ -110,14 +121,14 @@ const useUpdateBook = (id) => {
         .catch(error => navigate(`/Error/${error}`))
     }
 
-    return [book, setBook, submitBook]
+    return [book, dispatchBook, submitBook]
 }
 
-const useDeleteBook = () => {
+const useDeleteBook = (id) => {
     const navigate = useNavigate();
     const verifyToken = useTokenVerification()
 
-    const submitID = async (id) => {
+    const submitID = async () => {
         const token = verifyToken()
 
         fetch(`${BaseRoute}/${id}`, {

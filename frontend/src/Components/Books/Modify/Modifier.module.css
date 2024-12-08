@@ -1,4 +1,4 @@
-.FullSearch > * {
+.FullModifier > * {
     padding: 0;
     margin: 0;
 }
@@ -7,6 +7,12 @@ header {
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.FullHeader {
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 .Nav {
@@ -98,57 +104,65 @@ header {
     background-color: var(--rel-black-color);
 }
 
-.SearchBox {
-    width: fit-content;
-    padding: 20px;
+.BookFull  {
+    height: 100%;
+    padding: 100px 25px;
+    box-sizing: border-box;
 
+    background-color: var(--primary-app-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.BookBox > h1 {
+    font-size: 2rem;
+    color: var(--rel-black-color);
+    text-align: center;
+}
+
+.BookBox {
+    width: 30%;
+    padding: 50px;
+
+    background-color: var(--rel-white-color);
+
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.BookForm {
     justify-self: center;
 
     display: flex;
+    gap: 30px;
     flex-direction: column;
+    align-items: left;
 }
 
-.SearchBox > button {
-    font-size: 1rem;
-    text-align: left;
-    color: var(--rel-black-color);
+.BookForm > input {
+    height: fit-content;
 
-    border: none;
+    font-size: 1rem;
+    text-wrap: wrap;
+
     background-color: transparent;
-}
-
-.SearchBox > button:hover {
-    color: var(--primary-app-color);
-    cursor: pointer;
-}
-
-.InputBox {
-    padding-bottom: 10px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: flex-start;
-}
-
-.InputBox > select {
-    width: fit-content;
-
-    font-size: 1rem;
-
-    border: none;
-}
-
-.InputBox > input {
-    font-size: 1rem;
 
     border-style: none;
     border-bottom-style: solid;
     border-bottom-width: 2px;
     border-bottom-color: var(--rel-black-color);
+
+    transition: all 0.2s ease-out;
 }
 
-.InputBox > input:focus {
+.BookForm > input:focus {
     outline: none;
     border: none;
     border-bottom-style: solid;
@@ -156,103 +170,57 @@ header {
     border-bottom-color: var(--primary-app-color);
 }
 
-.Results {
-    padding: 20px 0;
+.BookButtons {
+    width: 100%;
 
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
 
-.ResultGrid {
-    padding: 25px;
+.BookButtons > .Submit {
+    padding: 10px;
     box-sizing: border-box;
 
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-
-.BookDisplay {
-    width: fit-content;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
-}
-
-.BookDisplay > img {
-    width: 300px;
-    aspect-ratio: 3 / 5;
-    box-sizing: border-box;
-
-    border-style: dotted;
-    border-width: 2px;
-    border-color: var(--rel-black-color);
-}
-
-.BookInfo {
-    width: 300px;
-    aspect-ratio: 3 / 5;
-    box-sizing: border-box;
-    position: absolute;
-
-    display: flex;
-    gap: 20px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    transition: all 0.2s ease-in;
-}
-
-.BookInfo > * {
-    transition: all 0.2s ease-in;
-}
-
-.BookDisplay > .BookInfo > h3 {
-    font-size: 1.5rem;
-    color: transparent;
-}
-
-.BookDisplay > .BookInfo > p {
-    font-size: 1.25rem;
-    color: transparent;
-}
-
-.BookDisplay > .BookInfo > button {
-    padding: 7px;
-
-    color: transparent;
+    font-size: 0.8rem;
+    color: var(--primary-app-color);
     background-color: transparent;
-    border-color: transparent;
+
     border-style: solid;
+    border-width: 2px;
+    border-color: var(--primary-app-color);
     border-top-left-radius: 10px;
     border-bottom-right-radius: 10px;
+
+    transition: all 0.2s ease-out;
 }
 
-.BookDisplay:hover > .BookInfo {
-    background-color: #6e8689bc;
-    border-style: solid;
-}
-
-.BookDisplay:hover > .BookInfo > h3 {
+.BookButtons > .Submit:hover {
     color: var(--rel-white-color);
+    background-color: var(--primary-app-color);
+
+    cursor: pointer;
 }
 
-.BookDisplay:hover > .BookInfo > p {
-    color: var(--rel-white-color);
-}
-
-.BookDisplay:hover > .BookInfo > button {
-    color: var(--rel-white-color);
-    border-color: var(--rel-white-color);
-}
-
-.BookDisplay:hover > .BookInfo > button:hover {
+.BookButtons > .Reset {
+    height: fit-content;
+    padding: 0;
+    box-sizing: border-box;
+    
+    font-size: 0.8rem;
     color: var(--primary-app-color);
-    background-color: var(--rel-white-color);
+    background-color: rgba(0, 0, 0, 0);
+
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-color: transparent;
+}
+
+.BookButtons > .Reset:hover {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--primary-app-color);
+
+    cursor: pointer;
 }
