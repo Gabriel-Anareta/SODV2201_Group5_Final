@@ -1,4 +1,4 @@
-import { useDebugValue, useEffect, useReducer } from "react";
+import { useEffect } from "react";
 import { useAllBooks } from "../../../ServerHooks/BookHooks";
 import { useFilter, filterContext } from "./SearchHooks";
 import { NavBar } from "./NavBar";
@@ -15,7 +15,6 @@ export const SearchBooks = () => {
     const allBooks = useAllBooks()
     const verifyToken = useTokenVerification()
     const navigate = useNavigate()
-    const username = localStorage.getItem('username')
 
     useEffect(() => {
         verifyToken(error => {
@@ -34,9 +33,7 @@ export const SearchBooks = () => {
     return (
         <div className={styles.FullSearch}>
             <header>
-                <div className={styles.Nav}>
-                    <NavBar username={username}/>
-                </div>
+                <NavBar/>
                 <div className={styles.TitleOuter}>
                     <div className={styles.TitleInner}>
                         <h1>Search the Catelogue</h1>

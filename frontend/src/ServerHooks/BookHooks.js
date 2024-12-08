@@ -1,6 +1,5 @@
 import { useEffect, useReducer, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useTokenVerification } from "./UserHooks"
 
 const BaseRoute = '/books'
 
@@ -73,16 +72,17 @@ const ModBookReducer = (state, action) => {
             }
         case "ResetBook":
             return ModBookState
+        default:
+            break;
     }
 }
 
 const useCreateBook = () => {
     const [book, dispatchBook] = useReducer(ModBookReducer, ModBookState)
     const navigate = useNavigate();
-    const verifyToken = useTokenVerification()
 
     const submitBook = async () => {
-        const token = verifyToken()
+        const token = localStorage.getItem('accessToken')
 
         fetch(BaseRoute, {
             method: 'POST',
@@ -103,10 +103,10 @@ const useCreateBook = () => {
 const useUpdateBook = (id) => {
     const [book, dispatchBook] = useReducer(ModBookReducer, ModBookState)
     const navigate = useNavigate();
-    const verifyToken = useTokenVerification()
 
     const submitBook = async () => {
-        const token = verifyToken()
+        const token = localStorage.getItem('accessToken')
+        console.log(token)
 
         fetch(`${BaseRoute}/${id}`, {
             method: 'PUT',
@@ -126,10 +126,9 @@ const useUpdateBook = (id) => {
 
 const useDeleteBook = (id) => {
     const navigate = useNavigate();
-    const verifyToken = useTokenVerification()
 
     const submitID = async () => {
-        const token = verifyToken()
+        const token = localStorage.getItem('accessToken')
 
         fetch(`${BaseRoute}/${id}`, {
             method: 'DELETE',

@@ -51,7 +51,6 @@ export const AddBook = () => {
         }
 
         submitBook()
-        navigate('/Books')
     }
 
     return (

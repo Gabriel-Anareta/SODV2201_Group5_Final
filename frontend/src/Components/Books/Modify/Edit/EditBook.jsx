@@ -29,12 +29,15 @@ export const EditBook = () => {
             navigate(`/Error/${error}`)
             return
         }
+    }, [])
 
+    useEffect(() => {
+        console.log(getBook)
         dispatchBook({
             type: "SetBook",
             value: getBook
         })
-    }, [])
+    }, [getBook])
 
     const HandleChange = (e) => {
         dispatchBook({
@@ -48,7 +51,9 @@ export const EditBook = () => {
         dispatchBook({ type: "ResetBook" })
     }
 
-    const HandleSubmit = () => {
+    const HandleSubmit = (e) => {
+        e.preventDefault()
+
         for (const prop in book) {
             if (prop === "coverImage")
                 continue

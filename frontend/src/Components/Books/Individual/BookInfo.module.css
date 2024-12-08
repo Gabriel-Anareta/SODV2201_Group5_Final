@@ -1,0 +1,185 @@
+.FullDisplay > * {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Nav {
+    width: 100%;
+    padding: 0 25px;
+
+    background-color: var(--rel-white-color);
+}
+
+.NavContainer {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    padding: 25px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: transparent;
+    transition: all 0.2s ease-in;
+}
+
+.NavContainer:hover {
+    background-color: rgba(0, 15, 26, 0.5);
+}
+
+.NavContainer > p {
+    color: var(--rel-white-color);
+    font-size: 1.5rem;
+}
+
+.NavButtons {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.NavContainer > * > button {
+    font-size: 1rem;
+    color: var(--rel-white-color);
+    background-color: transparent;
+    border-style: none;
+
+    transition: all 0.2s ease-in;
+}
+
+.NavContainer > * > button:hover {
+    color: var(--primary-app-color);
+    cursor: pointer;
+}
+
+.TitleOuter {
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--primary-app-color);
+    background-image: url('../../../../public/HomeTitleBack.png');
+    background-attachment: unset;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.TitleInner {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 15, 26, 0.4);
+}
+
+.TitleInner > h1 {
+    color: var(--rel-white-color);
+    font-size: 3rem;
+}
+
+.Divider {
+    width: 100%;
+    height: 50px;
+
+    background-color: var(--rel-black-color);
+}
+
+.BookDisplay {
+    height: 100%;
+    padding: 50px 25px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.BookDisplay > img {
+    width: 30%;
+    aspect-ratio: 3 / 5;
+}
+
+.BookInfo {
+    margin-left: 30px;
+    padding-left: 30px;
+    box-sizing: border-box;
+
+    border-left-style: solid;
+    border-left-width: 5px;
+    border-left-color: var(--primary-app-color);
+
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: left;
+}
+
+.BookInfo > * > h2 {
+    width: fit-content;
+    margin-bottom: 10px;
+
+    font-size: 2.5rem;
+
+    border-bottom-style: solid;
+    border-bottom-width: 3px;
+    border-bottom-color: var(--rel-black-color);
+}
+
+.BookInfo > * > h3 {
+    font-size: 2rem;
+}
+
+.BookInfo > * > h4 {
+    font-size: 1.3rem;
+}
+
+.BookSubInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.BookSubInfo > p {
+    font-size: 1.3rem;
+}
+
+.BookMod {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.BookMod > button {
+    padding: 7px;
+
+    color: var(--primary-app-color);
+    background-color: transparent;
+
+    border-style: solid;
+    border-color: var(--primary-app-color);
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    
+    transition: all 0.2s ease-out;
+}
+
+
+.BookMod > button:hover {
+    color: var(--rel-white-color);
+    background-color: var(--primary-app-color);
+    cursor: pointer;
+}

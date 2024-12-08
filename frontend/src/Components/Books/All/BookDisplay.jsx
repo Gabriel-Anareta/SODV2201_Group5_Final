@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import styles from "./Search.module.css"
+import styles from "./AllBooks.module.css"
 
 export const BookDisplay = ({data}) => {
     const [book, setBook] = useState(data)

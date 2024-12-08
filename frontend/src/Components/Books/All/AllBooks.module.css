@@ -1,4 +1,4 @@
-.FullSearch > * {
+.FullDisplay > * {
     padding: 0;
     margin: 0;
 }
@@ -96,64 +96,6 @@ header {
     height: 50px;
 
     background-color: var(--rel-black-color);
-}
-
-.SearchBox {
-    width: fit-content;
-    padding: 20px;
-
-    justify-self: center;
-
-    display: flex;
-    flex-direction: column;
-}
-
-.SearchBox > button {
-    font-size: 1rem;
-    text-align: left;
-    color: var(--rel-black-color);
-
-    border: none;
-    background-color: transparent;
-}
-
-.SearchBox > button:hover {
-    color: var(--primary-app-color);
-    cursor: pointer;
-}
-
-.InputBox {
-    padding-bottom: 10px;
-
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    justify-content: flex-start;
-}
-
-.InputBox > select {
-    width: fit-content;
-
-    font-size: 1rem;
-
-    border: none;
-}
-
-.InputBox > input {
-    font-size: 1rem;
-
-    border-style: none;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-color: var(--rel-black-color);
-}
-
-.InputBox > input:focus {
-    outline: none;
-    border: none;
-    border-bottom-style: solid;
-    border-bottom-width: 2px;
-    border-bottom-color: var(--primary-app-color);
 }
 
 .Results {
