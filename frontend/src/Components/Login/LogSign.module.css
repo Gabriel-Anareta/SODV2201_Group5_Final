@@ -37,7 +37,6 @@
     align-items: center;
 
     animation: AnimateBackground 30s linear 0s infinite;
-    transition: all 0.2s linear
 }
 
 .UserBox > h1 {

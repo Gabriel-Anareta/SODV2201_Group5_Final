@@ -71,6 +71,7 @@ export const EditBook = () => {
             </header>
             <main className={styles.BookFull}>
                 <section className={styles.BookBox}>
+                    <h1>Edit</h1>
                     <form onSubmit={HandleSubmit} className={styles.BookForm}>
                         <input type="text" name="title" onChange={HandleChange} placeholder="Title" value={book.title}required/>
                         <input type="text" name="author" onChange={HandleChange} placeholder="Author" value={book.author}required/>
