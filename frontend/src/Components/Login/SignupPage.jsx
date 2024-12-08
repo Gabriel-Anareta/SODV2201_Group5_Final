@@ -28,6 +28,7 @@ export const SignupPage = () => {
 
     return (
         <div>
+            <div className={styles.Opener}></div>
             <main className={styles.UserFull}>
                 <section className={styles.UserBox}>
                     <h1>Signup</h1>
