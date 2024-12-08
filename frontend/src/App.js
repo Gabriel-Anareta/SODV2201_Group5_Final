@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import { Home } from './Components/Home/Home';
 import { LoginPage } from './Components/Login/LoginPage';
 import { SignupPage } from './Components/Login/SignupPage';
-import { AllBooks } from './Components/Books/AllBooks';
-import { BookInfo } from './Components/Books/BookInfo';
+import { BookInfo } from './Components/Books/Individual/BookInfo';
+import { AllBooks } from './Components/Books/All/AllBooks';
 import { ErrorPage } from './Components/Error/ErrorPage';
 import { SearchBooks } from './Components/Books/Search/SearchBooks';
 import { DeleteBook } from './Components/Books/Modify/Delete/DeleteBook';

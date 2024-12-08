@@ -15,7 +15,6 @@ export const SearchBooks = () => {
     const allBooks = useAllBooks()
     const verifyToken = useTokenVerification()
     const navigate = useNavigate()
-    const username = localStorage.getItem('username')
 
     useEffect(() => {
         verifyToken(error => {
@@ -34,7 +33,7 @@ export const SearchBooks = () => {
     return (
         <div className={styles.FullSearch}>
             <header>
-                <NavBar username={username}/>
+                <NavBar/>
                 <div className={styles.TitleOuter}>
                     <div className={styles.TitleInner}>
                         <h1>Search the Catelogue</h1>

@@ -10,6 +10,7 @@ export const NavBar = ({ username }) => {
             <div className={styles.NavButtons}>
                 <button onClick={() => navigate('/Books')}>All Books</button>
                 <button onClick={() => navigate('/Books/Search')}>Search</button>
+                <button onClick={() => navigate('/Books/Add')}>Create Book</button>
                 <button onClick={() => {
                     localStorage.clear()
                     navigate('/Login')
