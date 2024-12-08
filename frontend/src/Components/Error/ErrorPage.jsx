@@ -1,12 +1,25 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
+import styles from "./Error.module.css"
 
 export const ErrorPage = () => {
     const { message } = useParams()
+    const navigate = useNavigate()
 
     return(
         <div>
-            <h2>Oh no - Something went wrong!</h2>
-            <p>{message}</p>
+            <main>
+                <section className={styles.ErrorFull}>
+                    <h1 className={styles.Title}>Sorry, Looks like something went wrong !</h1>
+                    <div className={styles.ErrorMessage}>
+                        <h2>Error Message</h2>
+                        <p>{message}</p>
+                        <button type="button" onClick={() => navigate('/Home')}>Go Home</button>
+                    </div>
+                </section>
+            </main>
+            <footer>
+                <p className={styles.Copyright}>Copyright &copy; {new Date().getFullYear()}</p>
+            </footer>
         </div>
     )
 }
