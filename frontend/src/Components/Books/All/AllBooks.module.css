@@ -1,0 +1,233 @@
+.FullDisplay > * {
+    padding: 0;
+    margin: 0;
+}
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Nav {
+    width: 100%;
+    padding: 0 25px;
+
+    background-color: var(--rel-white-color);
+}
+
+.NavContainer {
+    position: absolute;
+    width: 100%;
+    height: fit-content;
+    padding: 25px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: transparent;
+    transition: all 0.2s ease-in;
+}
+
+.NavContainer:hover {
+    background-color: rgba(0, 15, 26, 0.5);
+}
+
+.NavContainer > p {
+    color: var(--rel-white-color);
+    font-size: 1.5rem;
+}
+
+.NavButtons {
+    display: flex;
+    gap: 20px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.NavContainer > * > button {
+    font-size: 1rem;
+    color: var(--rel-white-color);
+    background-color: transparent;
+    border-style: none;
+
+    transition: all 0.2s ease-in;
+}
+
+.NavContainer > * > button:hover {
+    color: var(--primary-app-color);
+    cursor: pointer;
+}
+
+.TitleOuter {
+    width: 100%;
+    height: 100%;
+
+    background-color: var(--primary-app-color);
+    background-image: url('../../../../public/HomeTitleBack.png');
+    background-attachment: unset;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.TitleInner {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgba(0, 15, 26, 0.4);
+}
+
+.TitleInner > h1 {
+    color: var(--rel-white-color);
+    font-size: 3rem;
+}
+
+.Divider {
+    width: 100%;
+    height: 50px;
+
+    background-color: var(--rel-black-color);
+}
+
+.Results {
+    padding: 20px 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.ResultGrid {
+    padding: 25px;
+    box-sizing: border-box;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.BookDisplay {
+    width: fit-content;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.BookDisplay > img {
+    width: 300px;
+    aspect-ratio: 3 / 5;
+    box-sizing: border-box;
+
+    border-style: dotted;
+    border-width: 2px;
+    border-color: var(--rel-black-color);
+}
+
+.BookInfo {
+    width: 300px;
+    aspect-ratio: 3 / 5;
+    box-sizing: border-box;
+    position: absolute;
+
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    transition: all 0.2s ease-in;
+}
+
+.BookInfo > * {
+    transition: all 0.2s ease-in;
+}
+
+.BookInfo > h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: transparent;
+}
+
+.BookInfo > p {
+    text-align: center;
+    font-size: 1.25rem;
+    color: transparent;
+}
+
+.BookInfo > button {
+    padding: 7px;
+
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.BookMod > * {
+    transition: all 0.2s ease-in;
+}
+
+.BookMod {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.BookMod > button {
+    padding: 7px;
+
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.BookDisplay:hover > .BookInfo {
+    background-color: #6e8689bc;
+    border-style: solid;
+}
+
+.BookDisplay:hover > .BookInfo > h3 {
+    color: var(--rel-white-color);
+}
+
+.BookDisplay:hover > .BookInfo > p {
+    color: var(--rel-white-color);
+}
+
+.BookDisplay:hover > .BookInfo > button {
+    color: var(--rel-white-color);
+    border-color: var(--rel-white-color);
+}
+
+.BookDisplay:hover > .BookInfo > .BookMod > button {
+    color: var(--rel-white-color);
+    border-color: var(--rel-white-color);
+}
+
+.BookDisplay:hover > .BookInfo > button:hover {
+    color: var(--primary-app-color);
+    background-color: var(--rel-white-color);
+}
+
+.BookDisplay:hover > .BookInfo > .BookMod > button:hover {
+    color: var(--primary-app-color);
+    background-color: var(--rel-white-color);
+}
