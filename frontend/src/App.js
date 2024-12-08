@@ -7,6 +7,9 @@ import { AllBooks } from './Components/Books/AllBooks';
 import { BookInfo } from './Components/Books/BookInfo';
 import { ErrorPage } from './Components/Error/ErrorPage';
 import { SearchBooks } from './Components/Books/Search/SearchBooks';
+import { DeleteBook } from './Components/Books/Modify/Delete/DeleteBook';
+import { EditBook } from './Components/Books/Modify/Edit/EditBook';
+import { AddBook } from './Components/Books/Modify/Add/AddBook';
 
 function App() {
   return (
@@ -22,6 +25,9 @@ function App() {
             <Route path='' element={<AllBooks />}></Route>
             <Route path=':id' element={<BookInfo />}></Route>
             <Route path='Search' element={<SearchBooks />}></Route>
+            <Route path='Add' element={<AddBook />}></Route>
+            <Route path='Edit/:id' element={<EditBook />}></Route>
+            <Route path='Delete/:id' element={<DeleteBook />}></Route>
           </Route>
         </Routes>
       </BrowserRouter>

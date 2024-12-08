@@ -44,7 +44,7 @@ export const Home = () => {
                             <p>
                                 “. . . If I were a young person today, 
                                 <span className={styles.HighlightDark}> trying to gain a sense of myself in the world</span>
-                                , would do that again by reading, just as I did when I was young.”
+                                , I would do that again by reading, just as I did when I was young.”
                             </p>
                             <p>~ Maya Angelou</p>
                         </div>

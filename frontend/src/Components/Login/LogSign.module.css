@@ -1,0 +1,133 @@
+.UserFull  {
+    height: 100vh;
+    box-sizing: border-box;
+
+    background-color: var(--primary-app-color);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.UserBox > h1 {
+    font-size: 2rem;
+    color: var(--rel-black-color);
+    text-align: center;
+}
+
+.UserBox {
+    width: 30%;
+    padding: 50px;
+
+    background-color: var(--rel-white-color);
+
+    border-top-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.UserForm {
+    justify-self: center;
+
+    display: flex;
+    gap: 30px;
+    flex-direction: column;
+    align-items: left;
+}
+
+.UserForm > input {
+    font-size: 1rem;
+
+    background-color: transparent;
+
+    border-style: none;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--rel-black-color);
+
+    transition: all 0.2s ease-out;
+}
+
+.UserForm > input:focus {
+    outline: none;
+    border: none;
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--primary-app-color);
+}
+
+.UserButtons {
+    width: 100%;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.UserButtons > .Submit {
+    padding: 10px;
+    box-sizing: border-box;
+
+    font-size: 0.8rem;
+    color: var(--primary-app-color);
+    background-color: transparent;
+
+    border-style: solid;
+    border-width: 2px;
+    border-color: var(--primary-app-color);
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+    transition: all 0.2s ease-out;
+}
+
+.UserButtons > .Submit:hover {
+    color: var(--rel-white-color);
+    background-color: var(--primary-app-color);
+
+    cursor: pointer;
+}
+
+.UserButtons > .Reroute {
+    height: fit-content;
+    padding: 0;
+    box-sizing: border-box;
+    
+    font-size: 0.8rem;
+    color: var(--primary-app-color);
+    background-color: rgba(0, 0, 0, 0);
+
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-color: transparent;
+}
+
+.UserButtons > .Reroute:hover {
+    border-bottom-style: solid;
+    border-bottom-width: 2px;
+    border-bottom-color: var(--primary-app-color);
+
+    cursor: pointer;
+}
+
+footer {
+    padding: 25px;
+    box-sizing: border-box;
+    background-color: var(--rel-black-color);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.Copyright {
+    width: fit-content;
+    box-sizing: border-box;
+
+    color: var(--rel-white-color);
+}
