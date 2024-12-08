@@ -30,6 +30,10 @@ export const DeleteBook = () => {
         }
     }, [])
 
+    const HandleSubmit = () => {
+        submitID()
+    }
+
     return (
         <div className={styles.FullModifier}>
             <header>
@@ -50,7 +54,7 @@ export const DeleteBook = () => {
                     <p>{book.coverImage}</p>
                     <div className={styles.BookButtons}>
                         <button type="button" onClick={() => navigate('/Books')} className={styles.Reset}>Go Back</button>
-                        <button type="button" className={styles.Submit}>Delete</button>
+                        <button type="button" onClick={HandleSubmit} className={styles.Submit}>Delete</button>
                     </div>
                 </section>
             </main>
