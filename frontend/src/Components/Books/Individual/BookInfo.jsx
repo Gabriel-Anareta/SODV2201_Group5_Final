@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import { useGetBook } from "../../../ServerHooks/BookHooks";
 import { useTokenVerification } from "../../../ServerHooks/UserHooks";
 import { FooterInfo } from "../../Footer/FooterInfo";

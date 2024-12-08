@@ -1,6 +1,5 @@
 import { useEffect, useReducer, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useTokenVerification } from "./UserHooks"
 
 const BaseRoute = '/books'
 
@@ -73,6 +72,8 @@ const ModBookReducer = (state, action) => {
             }
         case "ResetBook":
             return ModBookState
+        default:
+            break;
     }
 }
 

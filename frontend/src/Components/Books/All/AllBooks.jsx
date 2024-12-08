@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-import { useParams, Link, useNavigate } from "react-router-dom"
+import { useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import { useTokenVerification } from "../../../ServerHooks/UserHooks"
 import { useAllBooks } from "../../../ServerHooks/BookHooks"
 import { NavBar } from "./NavBar"
@@ -33,7 +33,7 @@ export const AllBooks = () => {
                 <section className={styles.Results}>
                     <h2>All Books</h2>
                     <div className={styles.ResultGrid}>
-                        {allBooks.map(book => <BookDisplay data={book}/>)}
+                        {allBooks.map(book => <BookDisplay key={book.id} data={book}/>)}
                     </div>
                     <h2>End of Results</h2>
                 </section>
