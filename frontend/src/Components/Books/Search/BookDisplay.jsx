@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
-import styles from "./Search.module.css"
 import { useNavigate } from "react-router-dom"
+import styles from "./Search.module.css"
 
 export const BookDisplay = ({data}) => {
     const [book, setBook] = useState(data)
     const navigate = useNavigate()
+    const username = localStorage.getItem('username')
 
     useEffect(() => {
         setBook(data)
@@ -17,6 +18,12 @@ export const BookDisplay = ({data}) => {
                 <h3>{book.title}</h3>
                 <p>{book.author}</p>
                 <button onClick={() => navigate(`/Books/${book.id}`)}>View this book</button>
+                {username === "admin" ?
+                <div className={styles.BookMod}>
+                    <button type="button" onClick={() => navigate(`/Books/Edit/${book.id}`)}>Edit</button>
+                    <button type="button" onClick={() => navigate(`/Books/Delete/${book.id}`)}>Delete</button>
+                </div>
+                : <></>}
             </div>
         </div>
     )

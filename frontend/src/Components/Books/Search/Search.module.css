@@ -213,17 +213,40 @@ header {
     transition: all 0.2s ease-in;
 }
 
-.BookDisplay > .BookInfo > h3 {
+.BookInfo > h3 {
+    text-align: center;
     font-size: 1.5rem;
     color: transparent;
 }
 
-.BookDisplay > .BookInfo > p {
+.BookInfo > p {
+    text-align: center;
     font-size: 1.25rem;
     color: transparent;
 }
 
-.BookDisplay > .BookInfo > button {
+.BookInfo > button {
+    padding: 7px;
+
+    color: transparent;
+    background-color: transparent;
+    border-color: transparent;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.BookMod > * {
+    transition: all 0.2s ease-in;
+}
+
+.BookMod {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.BookMod > button {
     padding: 7px;
 
     color: transparent;
@@ -252,7 +275,17 @@ header {
     border-color: var(--rel-white-color);
 }
 
+.BookDisplay:hover > .BookInfo > .BookMod > button {
+    color: var(--rel-white-color);
+    border-color: var(--rel-white-color);
+}
+
 .BookDisplay:hover > .BookInfo > button:hover {
+    color: var(--primary-app-color);
+    background-color: var(--rel-white-color);
+}
+
+.BookDisplay:hover > .BookInfo > .BookMod > button:hover {
     color: var(--primary-app-color);
     background-color: var(--rel-white-color);
 }
