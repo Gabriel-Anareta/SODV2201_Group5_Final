@@ -11,3 +11,8 @@ In the backend and fronted directories respectively:
 
 Runs the respective apps on the local servers
 Running on the backend will show `Server is running on port` in the terminal once the server is running
+
+## Logins
+
+Running the given admin login will allow a user to access the admin functionalities
+Logging in with a different login will only allow a user to access the basic functionalities
