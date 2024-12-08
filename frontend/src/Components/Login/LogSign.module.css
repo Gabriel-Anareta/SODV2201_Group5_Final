@@ -2,7 +2,10 @@
     height: 100vh;
     box-sizing: border-box;
 
-    background-color: var(--primary-app-color);
+    background: 
+        linear-gradient(217deg, var(--primary-app-color), #81c7ed00 70.71%),
+        linear-gradient(127deg, var(--secondary-app-color), #3974be00 70.71%),
+        linear-gradient(336deg, var(--ternary-app-color), #2eaebc00 70.71%);;
 
     display: flex;
     justify-content: center;
