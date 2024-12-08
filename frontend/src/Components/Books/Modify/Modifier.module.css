@@ -104,6 +104,29 @@ header {
     background-color: var(--rel-black-color);
 }
 
+@keyframes AnimateBackground {
+    0% {
+        background-size: 200%;
+        background-position: 0% 100%;
+    }
+    25% {
+        background-size: 100%;
+        background-position: 100% 75%;
+    }
+    50% {
+        background-size: 200%;
+        background-position: 100% 0%;
+    }
+    75% {
+        background-size: 100%;
+        background-position: 50% 50%;
+    }
+    100% {
+        background-size: 200%;
+        background-position: 0% 100%;
+    }
+}
+
 .BookFull  {
     height: 100%;
     padding: 100px 25px;
@@ -113,10 +136,14 @@ header {
         linear-gradient(217deg, var(--primary-app-color), #81c7ed00 70.71%),
         linear-gradient(127deg, var(--secondary-app-color), #3974be00 70.71%),
         linear-gradient(336deg, var(--ternary-app-color), #2eaebc00 70.71%);
+    background-size: 200%;
+    background-position: 0% 100%;
 
     display: flex;
     justify-content: center;
     align-items: center;
+
+    animation: AnimateBackground 30s linear 0s infinite;
 }
 
 .BookBox > h1 {

@@ -36,7 +36,7 @@ export const SearchBooks = () => {
                 <NavBar/>
                 <div className={styles.TitleOuter}>
                     <div className={styles.TitleInner}>
-                        <h1>Search the Catelogue</h1>
+                        <h1>Search the Catalogue</h1>
                     </div>
                 </div>
                 <div className={styles.Divider}></div>

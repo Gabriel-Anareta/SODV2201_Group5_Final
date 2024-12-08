@@ -44,6 +44,7 @@ export const LoginPage = () => {
 
     return (
         <div>
+            <div className={styles.Opener}></div>
             <main className={styles.UserFull}>
                 <section className={styles.UserBox}>
                     <h1>Login</h1>
