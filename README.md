@@ -10,4 +10,4 @@ In the backend and fronted directories respectively:
 ### `npm start`
 
 Runs the respective apps on the local servers
-Running on the backend will show `Server is running on port` in the terminal once the server is running
+Running on the backend will show `Server is running on port "your given port"` in the terminal once the server is running
